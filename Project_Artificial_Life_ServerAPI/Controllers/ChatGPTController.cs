@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project_Artificial_Life_ServerAPI.Models.ChatGPT;
 
 namespace Project_Artificial_Life_ServerAPI.Controllers
 {
@@ -8,9 +9,9 @@ namespace Project_Artificial_Life_ServerAPI.Controllers
     {
         [HttpPost]
         [Route("sendMessageToChatBot")]
-        public IActionResult SendMessageToChatBot()
+        public ChatGPTSendMessageResponse SendMessageToChatBot(ICollection<ChatGPTSendMessageRequestMessageHistory> messageHistory)
         {
-            return View();
+            return new ChatGPTSendMessageResponse();
         }
     }
 }
