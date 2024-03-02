@@ -1,0 +1,6 @@
+@Project_Artificial_Life_ServerAPI_HostAddress = http://localhost:5255
+
+GET {{Project_Artificial_Life_ServerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
