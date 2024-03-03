@@ -9,9 +9,10 @@ namespace Project_Artificial_Life_ServerAPI.Controllers
     [Route("chatGPT/")]
     public class ChatGPTController : Controller
     {
-        public ChatGPTController(IHttpClientFactory httpClientFactory) 
+        public ChatGPTController(IConfiguration configuration, IHttpClientFactory httpClientFactory) 
         {
             _httpClient = httpClientFactory.CreateClient();
+            _apiKey = configuration["Config:ChatGPT_API_KEY"];
         }
 
 
@@ -19,10 +20,6 @@ namespace Project_Artificial_Life_ServerAPI.Controllers
         /// Адрес Endpoint ChatGPT API для получения ответа бота на сообщение пользователя 
         /// </summary>
         public const string CHATGPT_CHAT_REQUEST_URL = "https://api.openai.com/v1/chat/completions";
-        /// <summary>
-        /// Ключ для ChatGPT 
-        /// </summary>
-        public const string API_KEY = "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";
 
 
         [HttpPost]
@@ -30,7 +27,7 @@ namespace Project_Artificial_Life_ServerAPI.Controllers
         public async Task<ChatGPTSendMessageResponse?> SendMessageToChatBot(ChatGPTSendMessageRequest chatGPTMessage)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, CHATGPT_CHAT_REQUEST_URL);
-            request.Headers.Add("Authorization", "Bearer " + API_KEY);
+            request.Headers.Add("Authorization", "Bearer " + _apiKey);
             request.Content = JsonContent.Create(chatGPTMessage);
             HttpResponseMessage response = await _httpClient.SendAsync(request);
             if (response.StatusCode != HttpStatusCode.OK) return null;
@@ -43,5 +40,10 @@ namespace Project_Artificial_Life_ServerAPI.Controllers
         /// http клиент для отправки запроса к ChatGPT API
         /// </summary>
         private HttpClient _httpClient;
+
+        /// <summary>
+        /// Ключ для ChatGPT 
+        /// </summary>
+        private string _apiKey;
     }
 }
