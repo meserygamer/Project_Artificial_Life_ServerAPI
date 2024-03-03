@@ -44,7 +44,7 @@ namespace Project_Artificial_Life_ServerAPI.Models.ChatGPT
         public int Index { get; set; }
 
         [JsonPropertyName("message")]
-        public ChatGPTSendMessageResponse Message { get; set; }
+        public ChatGPTSendMessageRequestMessageHistory Message { get; set; }
 
         [JsonPropertyName("logprobs")]
         public object Logprobs { get; set; }

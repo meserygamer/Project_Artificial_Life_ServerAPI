@@ -3,7 +3,7 @@
 namespace Project_Artificial_Life_ServerAPI.Models.ChatGPT
 {
     [Serializable]
-    public class ChatGPTSendMessageRequestContent
+    public class ChatGPTSendMessageRequest
     {
         [JsonPropertyName("model")]
         public string Model { get; set; } = "gpt-3.5-turbo";
