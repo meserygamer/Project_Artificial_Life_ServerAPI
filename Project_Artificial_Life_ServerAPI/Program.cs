@@ -25,16 +25,8 @@ namespace Project_Artificial_Life_ServerAPI
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                    options.RoutePrefix = string.Empty;
-                });
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseCors(builder => builder.AllowAnyOrigin());
 
